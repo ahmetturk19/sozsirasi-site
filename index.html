@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Söz Sırası · Şarkı Sözü & Repertuvar</title>
+<meta name="description" content="Sahne müzisyenleri için şarkı sözü ve repertuvar uygulaması. 45.000+ şarkı sözü, repertuvar ve sahne modu. Google Play'de ücretsiz.">
+<meta name="theme-color" content="#071a3d">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Söz Sırası · Sahne sizden, sözler bizden.">
+<meta property="og:description" content="45.000+ şarkı sözü, repertuvar ve sahne modu. Google Play'de ücretsiz.">
+<meta property="og:image" content="img/paylasim.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500;6..12,700;6..12,900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #050f26;
+    --bg: #071a3d;
+    --blue: #0b3f91;
+    --blue-hi: #1478e8;
+    --gold: #ffc740;
+    --gold-ink: #1b1305;
+    --text: #ffffff;
+    --soft: #c4d8ff;
+    --muted: #8ea6d4;
+    --card: rgba(255, 255, 255, .06);
+    --line: rgba(255, 255, 255, .12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    min-height: 100vh;
+    font-family: "Nunito Sans", "Avenir Next", system-ui, sans-serif;
+    color: var(--text);
+    background: var(--bg-deep);
+    background-image:
+      radial-gradient(60rem 40rem at 85% -10%, rgba(20, 120, 232, .45), transparent 60%),
+      radial-gradient(40rem 30rem at -10% 40%, rgba(255, 199, 64, .10), transparent 60%),
+      linear-gradient(170deg, var(--bg) 0%, var(--bg-deep) 70%);
+    background-attachment: fixed;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  main { max-width: 1040px; margin: 0 auto; padding: max(28px, env(safe-area-inset-top)) 16px 48px; }
+
+  /* hero */
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: center; padding-top: 12px; }
+  .hero > * { min-width: 0; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand img { width: 52px; height: 52px; filter: drop-shadow(0 6px 18px rgba(255, 199, 64, .35)); }
+  .brand span { font-weight: 700; color: var(--soft); letter-spacing: .02em; }
+  h1 { font-size: clamp(2.6rem, 9vw, 4.2rem); font-weight: 900; line-height: 1.02; letter-spacing: -.02em; margin-top: 18px; }
+  h1 em { font-style: normal; color: var(--gold); display: block; }
+  .lead { color: var(--soft); font-size: clamp(1.05rem, 3.6vw, 1.25rem); margin-top: 14px; max-width: 34ch; }
+
+  .cta { margin-top: 26px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+  .play {
+    display: inline-flex; align-items: center; gap: 14px;
+    background: var(--gold); color: var(--gold-ink);
+    text-decoration: none; font-weight: 900; font-size: 1.15rem;
+    padding: 16px 26px 16px 20px; border-radius: 999px;
+    box-shadow: 0 12px 30px rgba(255, 199, 64, .28), inset 0 -2px 0 rgba(0, 0, 0, .12);
+    transition: transform .15s ease, box-shadow .15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .play:active { transform: scale(.97); }
+  .play:hover { box-shadow: 0 16px 36px rgba(255, 199, 64, .38), inset 0 -2px 0 rgba(0, 0, 0, .12); }
+  .play svg { width: 26px; height: 26px; flex: none; }
+  .play small { display: block; font-weight: 700; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; opacity: .75; line-height: 1; margin-bottom: 3px; }
+  .note { color: var(--muted); font-size: .9rem; padding-left: 6px; }
+  .ios { display: none; color: var(--soft); background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; font-size: .92rem; max-width: 34ch; }
+  .is-ios .ios { display: block; }
+
+  /* phones */
+  .shots {
+    display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 8px 16px 18px; margin: 0 -16px; scrollbar-width: none;
+  }
+  .shots::-webkit-scrollbar { display: none; }
+  .phone {
+    flex: none; width: min(62vw, 250px); scroll-snap-align: center;
+    border-radius: 34px; padding: 9px; background: #0e1220;
+    border: 2px solid #3a4a72;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, .45), 0 0 0 1px rgba(255, 255, 255, .04) inset;
+  }
+  .phone img { display: block; width: 100%; border-radius: 26px; aspect-ratio: 740 / 1482; object-fit: cover; }
+  .phone figcaption { text-align: center; color: var(--soft); font-weight: 700; font-size: .9rem; padding: 10px 0 2px; }
+
+  /* features */
+  .features { display: grid; gap: 14px; margin-top: 42px; }
+  .feature { display: flex; gap: 14px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 18px; }
+  .feature .ico { flex: none; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(140deg, var(--blue-hi), var(--blue)); }
+  .feature .ico svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .feature h3 { font-size: 1.1rem; font-weight: 900; }
+  .feature p { color: var(--soft); font-size: .95rem; margin-top: 2px; }
+
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 14px; }
+  .stat { text-align: center; padding: 16px 8px; border-radius: 18px; border: 1px solid var(--line); }
+  .stat b { display: block; font-size: 1.7rem; font-weight: 900; color: var(--gold); line-height: 1.1; }
+  .stat span { color: var(--soft); font-size: .88rem; }
+
+  .final { text-align: center; margin-top: 46px; padding: 34px 18px; border-radius: 28px; background: linear-gradient(160deg, rgba(20, 120, 232, .35), rgba(11, 63, 145, .25)); border: 1px solid var(--line); }
+  .final h2 { font-size: clamp(1.7rem, 6vw, 2.3rem); font-weight: 900; line-height: 1.1; }
+  .final p { color: var(--soft); margin: 8px auto 20px; max-width: 32ch; }
+  .final .cta { align-items: center; margin-top: 0; }
+
+  footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 34px; padding-bottom: max(10px, env(safe-area-inset-bottom)); }
+  footer a { color: var(--soft); text-decoration: none; font-weight: 700; }
+  footer .row { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+
+  @media (min-width: 860px) {
+    main { padding-top: 56px; }
+    .hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 40px; }
+    .shots { overflow: visible; margin: 0; padding: 0; justify-content: center; position: relative; height: 560px; }
+    .phone { position: absolute; width: 240px; }
+    .phone:nth-child(1) { transform: translateX(-150px) rotate(-7deg) translateY(30px); z-index: 1; }
+    .phone:nth-child(2) { z-index: 3; }
+    .phone:nth-child(3) { transform: translateX(150px) rotate(7deg) translateY(30px); z-index: 2; }
+    .phone:nth-child(4) { display: none; }
+    .phone figcaption { display: none; }
+    .features { grid-template-columns: repeat(3, 1fr); }
+    .stats { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) { .play { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div>
+      <div class="brand">
+        <img src="img/logo.png" alt="" width="52" height="52">
+        <span>Söz Sırası</span>
+      </div>
+      <h1>Sahne sizden,<em>sözler bizden.</em></h1>
+      <p class="lead">Sahnede, karaokede, eğlencede… Amatör ya da profesyonel her müzisyen için şarkı sözü ve repertuvar uygulaması.</p>
+      <div class="cta">
+        <a class="play" data-play href="https://play.google.com/store/apps/details?id=com.efekulabs.sozsirasi">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.2 2.4c-.3.3-.4.7-.4 1.2v16.8c0 .5.1.9.4 1.2l9.4-9.6-9.4-9.6Zm10.5 10.7 2.7 2.8-11 6.3c-.4.2-.8.3-1.1.2l9.4-9.3Zm0-2.2L5.3 1.6c.3-.1.7 0 1.1.2l11 6.3-2.7 2.8Zm3.9-2 2.9 1.7c.9.5.9 1.9 0 2.4l-2.9 1.7-3-3 3-2.8Z"/></svg>
+          <span><small>Ücretsiz indir</small>Google Play</span>
+        </a>
+        <span class="note">Android · Ücretsiz</span>
+        <p class="ios">Söz Sırası şimdilik yalnızca Android'de. iPhone sürümü için bizi Instagram'da takip et.</p>
+      </div>
+    </div>
+
+    <div class="shots" aria-label="Uygulama ekranları">
+      <figure class="phone"><img src="img/ekran-arama.webp" alt="Şarkı arama ekranı" loading="lazy"><figcaption>Saniyede ara</figcaption></figure>
+      <figure class="phone"><img src="img/ekran-ana.webp" alt="Söz Sırası ana sayfası"><figcaption>45.000+ şarkı sözü</figcaption></figure>
+      <figure class="phone"><img src="img/ekran-sahne.webp" alt="Sahne modu" loading="lazy"><figcaption>Sahne modu</figcaption></figure>
+      <figure class="phone"><img src="img/ekran-repertuvar.webp" alt="Repertuvar ekranı" loading="lazy"><figcaption>Repertuvarını kur</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="features">
+    <article class="feature">
+      <div class="ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+      <div><h3>Ara</h3><p>45.000+ şarkı sözünde saniyeler içinde bul. Türkçe karakter yazmana gerek yok.</p></div>
+    </article>
+    <article class="feature">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></div>
+      <div><h3>Kur</h3><p>Gecenin repertuvarını oluştur, şarkıları sürükleyip sırala.</p></div>
+    </article>
+    <article class="feature">
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="M9 18a3 3 0 1 0 6 0v-3H9z"/><path d="M5 10a7 7 0 0 0 14 0"/></svg></div>
+      <div><h3>Sahneye çık</h3><p>Sahne modunda büyük, okunaklı yazı ve karanlık tema. Sözler kendiliğinden aksın.</p></div>
+    </article>
+  </section>
+
+  <section class="stats" aria-label="Katalog">
+    <div class="stat"><b>45.000+</b><span>şarkı sözü</span></div>
+    <div class="stat"><b>3.900+</b><span>sanatçı</span></div>
+    <div class="stat"><b>40.000+</b><span>yerli şarkı</span></div>
+    <div class="stat"><b>5.500+</b><span>yabancı şarkı</span></div>
+  </section>
+
+  <section class="final">
+    <h2>Sahneye hazır mısın?</h2>
+    <p>Kâğıt listelere veda et. Söz Sırası'nı şimdi ücretsiz indir.</p>
+    <div class="cta">
+      <a class="play" data-play href="https://play.google.com/store/apps/details?id=com.efekulabs.sozsirasi">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.2 2.4c-.3.3-.4.7-.4 1.2v16.8c0 .5.1.9.4 1.2l9.4-9.6-9.4-9.6Zm10.5 10.7 2.7 2.8-11 6.3c-.4.2-.8.3-1.1.2l9.4-9.3Zm0-2.2L5.3 1.6c.3-.1.7 0 1.1.2l11 6.3-2.7 2.8Zm3.9-2 2.9 1.7c.9.5.9 1.9 0 2.4l-2.9 1.7-3-3 3-2.8Z"/></svg>
+        <span><small>Ücretsiz indir</small>Google Play</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="row">
+      <a href="https://www.instagram.com/sozsirasi.app/">Instagram</a>
+      <a href="mailto:efekulabs@gmail.com">İletişim</a>
+    </div>
+    © Efekulabs
+  </footer>
+</main>
+
+<script>
+  // Instagram's in-app browser cannot hand an https Play link to the Play Store app,
+  // so on Android we open it through an intent that falls back to the web listing.
+  (function () {
+    var pkg = "com.efekulabs.sozsirasi";
+    var params = new URLSearchParams(location.search);
+    var source = (params.get("src") || "instagram").replace(/[^a-z0-9_-]/gi, "");
+    var referrer = "utm_source=" + source + "&utm_medium=landing";
+    var web = "https://play.google.com/store/apps/details?id=" + pkg + "&referrer=" + encodeURIComponent(referrer);
+    var intent = "intent://details?id=" + pkg + "&referrer=" + encodeURIComponent(referrer) +
+      "#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=" + encodeURIComponent(web) + ";end";
+    var ua = navigator.userAgent || "";
+    var android = /Android/i.test(ua);
+    if (/iPhone|iPad|iPod/i.test(ua)) document.documentElement.classList.add("is-ios");
+    document.querySelectorAll("[data-play]").forEach(function (a) {
+      a.href = android ? intent : web;
+    });
+  })();
+</script>
+</body>
+</html>
